@@ -20,10 +20,9 @@ function App() {
 
   const deleteTask = async (e, name) => {
     e.preventDefault();
-    console.log('name: ', name);
     const endpoint = `/data/${name}`;
     const res = await axios.delete(endpoint);
-    console.log('res: ', res);
+    // on success, update state without call to backend
     if (res.status === 200) {
       const { [name]: undefined, ...newTasks } = tasks;
       setTasks(newTasks);
