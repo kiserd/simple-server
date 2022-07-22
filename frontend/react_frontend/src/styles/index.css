@@ -1,0 +1,55 @@
+/* tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card-dft {
+    @apply
+    m-2
+    p-2
+    mx-auto
+    w-full
+    max-w-xs
+    flex
+    justify-center
+    bg-custom-card
+    rounded 
+}
+
+.card-todo {
+    @apply
+    flex-row
+}
+
+.card-form {
+    @apply
+    flex-col
+}
+
+.headline {
+    @apply uppercase text-2xl text-custom-text-primary font-bold text-center pb-5;
+}
+
+.btn-dft {
+    @apply py-1 px-3 border-2 rounded bg-custom-purple-primary border-custom-purple-primary;
+}
+
+.btn-danger {
+    @apply py-1 px-3 border-2 rounded  bg-custom-error border-custom-error;
+}
+
+.form-elt-dft {
+  @apply w-full py-3 px-4 appearance-none leading-tight rounded-md bg-custom-hover text-custom-text-secondary focus:outline-none;
+}
+
+.label-dft {
+  @apply block uppercase tracking-wide mb-2 text-xs font-bold text-custom-text-primary;
+}
+
+.input-dft {
+  @apply py-3;
+}
+
+.select-dft {
+  @apply pr-8;
+}
