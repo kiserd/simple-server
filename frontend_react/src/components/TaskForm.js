@@ -4,7 +4,6 @@ import CloseIcon from '@mui/icons-material/Close';
 
 // component
 import TextInput from './TextInput';
-import Button from './Button';
 
 const TaskForm = ({ onSubmit, toggleForm }) => {
   return (

@@ -23,19 +23,22 @@ function App() {
     console.log('name: ', name);
     const endpoint = `/data/${name}`;
     const res = await axios.delete(endpoint);
-    const getRes = await axios.get('/all');
-    setTasks(getRes.data);
+    console.log('res: ', res);
+    if (res.status === 200) {
+      const { [name]: undefined, ...newTasks } = tasks;
+      setTasks(newTasks);
+
+    }
   }
 
   const updateTask = async (e, name, status) => {
     e.preventDefault();
-    console.log('UPDATE name: ', name);
-    console.log('UPDATE status: ', status);
-    const payload = {[name]: status == "1" ? "0" : "1"}
-    console.log('UPDATE payload: ', payload);
-    const postRes = await axios.post('/data', payload);
-    const tasks = await axios.get('/all');
-    setTasks(tasks.data);
+    const payload = {[name]: status === "1" ? "0" : "1"}
+    const res = await axios.post('/data', payload);
+    // on success, update state without call to backend
+    if (res.status === 200) {
+      setTasks(tasks => { return {...tasks, [name]: payload[name]}; });
+    }
   }
 
   const addTask = async (e) => {
@@ -43,11 +46,13 @@ function App() {
     const task = e.target.elements.name.value;
     console.log('task: ', task);
     const payload = {
-      [task]: 0
+      [task]: '0'
     }
-    const postRes = await axios.post('/data', payload);
-    const tasks = await axios.get('/all');
-    setTasks(tasks.data);
+    const res = await axios.post('/data', payload);
+    // on success, update state without call to backend
+    if (res.status === 200) {
+      setTasks(tasks => { return {...tasks, [task]: '0'}; });
+    }
   }
 
   const toggleForm = (e) => {
@@ -63,7 +68,7 @@ function App() {
         {
           !formOpen
         ? 
-          <Button style='btn-dft' text='Add' onClick={toggleForm} />
+          <Button styling='btn-dft' text='Add' onClick={toggleForm} />
         :
           <TaskForm onSubmit={addTask} toggleForm={toggleForm} />
         }
@@ -78,7 +83,7 @@ function App() {
               <div className='basis-1/8 px-2'>
                 <input
                 type='checkbox'
-                checked={taskStatus == '1' ? true : false}
+                checked={taskStatus === '1' ? true : false}
                 onChange={(e) => updateTask(e, taskName, taskStatus)}
                 />
               </div>
