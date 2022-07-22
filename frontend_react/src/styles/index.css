@@ -16,7 +16,7 @@
     rounded 
 }
 
-.card-todo {
+.card-task {
     @apply
     flex-row
 }

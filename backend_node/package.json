@@ -1,5 +1,5 @@
 {
-  "name": "node_backend",
+  "name": "backend_node",
   "version": "1.0.0",
   "description": "simple nodejs server",
   "main": "index.js",

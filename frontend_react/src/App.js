@@ -27,9 +27,12 @@ function App() {
     setTasks(getRes.data);
   }
 
-  const updateTask = async (e, name, done) => {
+  const updateTask = async (e, name, status) => {
     e.preventDefault();
-    const payload = {[name]: !done}
+    console.log('UPDATE name: ', name);
+    console.log('UPDATE status: ', status);
+    const payload = {[name]: status == "1" ? "0" : "1"}
+    console.log('UPDATE payload: ', payload);
     const postRes = await axios.post('/data', payload);
     const tasks = await axios.get('/all');
     setTasks(tasks.data);
@@ -64,16 +67,25 @@ function App() {
         :
           <TaskForm onSubmit={addTask} toggleForm={toggleForm} />
         }
-        {tasks.map((task) => {
+        {Object.keys(tasks).map((taskName) => {
+          // define convenient var name to point to status value
+          const taskStatus = tasks[taskName];
           return (
-            <div className='card-dft card-todo'>
-              <div className='px-2 text-custom-text-primary'>
-                {task.name}
+            <div key={taskName} className='card-dft card-task'>
+              <div className='basis-3/4 px-2 text-custom-text-primary text-xl'>
+                {taskName}
               </div>
-              <div className='px-2'>
-                <input type='checkbox' checked={task.done == 1 ? true : false} onChange={(e) => updateTask(e, task.name, task.done)} />
+              <div className='basis-1/8 px-2'>
+                <input
+                type='checkbox'
+                checked={taskStatus == '1' ? true : false}
+                onChange={(e) => updateTask(e, taskName, taskStatus)}
+                />
               </div>
-              <div className='px-2 text-custom-error' onClick={(e) => deleteTask(e, task.name)}>
+              <div
+              className='basis-1/8 px-2 text-custom-error'
+              onClick={(e) => deleteTask(e, taskName)}
+              >
                 <DeleteIcon />
               </div>
             </div>
