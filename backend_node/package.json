@@ -4,7 +4,9 @@
   "description": "simple nodejs server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend_node/index.js",
+    "build": "cd frontend_react && npm install && npm run build"
   },
   "repository": {
     "type": "git",
