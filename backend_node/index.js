@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const path = require('path');
+
 // connect to google sheet
 const sheetConnector = require('./sheetconn.js');
 
