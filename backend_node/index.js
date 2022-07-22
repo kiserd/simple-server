@@ -1,7 +1,9 @@
 // express init
 const express = require('express');
 const app = express();
-app.set('port', 5000);
+
+// set port
+const PORT = process.env.PORT || 5000;
 
 // body-parser
 const bodyParser = require('body-parser');
@@ -99,6 +101,6 @@ app.use((err, req, res, next) => {
     res.status(500).send(err);
 });
 
-app.listen(app.get('port'), () => {
-    console.log(`Express started on http://localhost:` + app.get('port') + `; press ctrl-c to terminate.`);
+app.listen(PORT, () => {
+    console.log(`Express started on http://localhost:${PORT}; press ctrl-c to terminate.`);
 });
