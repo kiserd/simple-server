@@ -1,12 +1,13 @@
 # simple-server
 
 To interact with TODO list application, navigate to the following url:
-https://kiser-tecace.herokuapp.com/
+- https://kiser-tecace.herokuapp.com/
 
-api: node.js, express
-db: google-spreadsheet
-frontend: React.js (create-react-app)
-styling: Tailwindcss
+Technologies:
+- api: node.js, express
+- db: google-spreadsheet
+- frontend: React.js (create-react-app)
+- styling: Tailwindcss
 
 To run locally:
 - clone repository
